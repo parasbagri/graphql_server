@@ -19,7 +19,7 @@ async function startServer() {
           website:String!
          }
       type Todo {
-        userId:ID!
+         user:Users!
         id:ID!
         title:String! 
         completed: Boolean!
@@ -33,6 +33,15 @@ async function startServer() {
       }
     `,
     resolvers: {
+      Todo: {
+        user: async (todo) =>
+          todo.userId &&
+          (
+            await axios.get(
+              `https://jsonplaceholder.typicode.com/users/${todo.userId}`
+            )
+          ).data, // yaha hum apne data base se get,update karenge resolver me
+      },
       Query: {
         getTodos: async () =>
           (await axios.get("https://jsonplaceholder.typicode.com/todos")).data, // yaha pass hum apne data base se get,update karenge resolver me
