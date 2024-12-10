@@ -19,7 +19,7 @@ async function startServer() {
           website:String!
          }
       type Todo {
-         user:Users!
+        user:Users!
         id:ID!
         title:String! 
         completed: Boolean!
