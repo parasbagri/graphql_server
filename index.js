@@ -60,7 +60,12 @@ async function startServer() {
     },
   });
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "*", // Replace '*' with your frontend URL in production
+    })
+  );
+
   app.use(bodyParser.json());
   await server.start();
 
